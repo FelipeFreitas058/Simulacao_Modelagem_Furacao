@@ -47,7 +47,7 @@ if B_h == -1:
     
 A_h = R_max**(B_h)
 f_c = 2*(7.2921*10**(-5)*np.sin(L*np.pi/180))                       # Cálculo da força de Coriolis para a latitude arbitrada
-pho = 1.15
+pho = 1.15                                                          # Definição da densidade do ar
 
 exp_term = np.exp(-A_h / r**B_h)                                    # Aplicação do modelo de Holland
 numerator = A_h * B_h * D_p * exp_term                              # Aplicação do modelo de Holland
