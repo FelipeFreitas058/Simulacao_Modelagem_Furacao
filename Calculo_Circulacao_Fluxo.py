@@ -13,7 +13,7 @@ Precisao = 100                  # Numero de pontos no qual 'R' será dividido. �
 ########### Definição de parâmetros do furacão ##################################################################################################################################################################################################################
 
 v_mc_x = 0                      # Velocidade de deslocamento do centro do furacão em x
-v_mc_y = 0                      # Velocidade de deslocamento do centro do furacão em x
+v_mc_y = 7                      # Velocidade de deslocamento do centro do furacão em x
 
 P_n = 1013.25                   # Pressão ambiente
 P_c = 840                       # Pressão no centro
@@ -89,10 +89,10 @@ def Integrando(t,R, v_mc_x, v_mc_y, P_n, P_c, R_max, B_h, L):               # Fu
     V_Total = V(C(t,R), v_mc_x, v_mc_y, P_n, P_c, R_max, B_h, L)
     Normal_Tangente = Vetor_Normal_Tangente(t,R)
     magnitude = Magnitude(dC_dt(t,R))
-    return anp.abs(anp.dot(V_Total, Normal_Tangente) * magnitude)
+    return (anp.dot(V_Total, Normal_Tangente) * magnitude)
 
 
-resultados_fluxo = []
+resultados_F_C = []
 valores_R = []
 Valores_t = np.linspace(0, 2*np.pi, 100)
 
@@ -100,10 +100,10 @@ for R in np.linspace(1, Raio_maximo, Precisao):                                 
     Valores_Integrando = [] 
     for t in Valores_t:
         Valores_Integrando.append(Integrando(t, R, v_mc_x, v_mc_y, P_n, P_c, R_max, B_h, L))
-    Fluxo = simpson(Valores_Integrando, x=Valores_t)
-    resultados_fluxo.append(Fluxo)
+    Fluxo_Circulacao = simpson(Valores_Integrando, x=Valores_t)
+    resultados_F_C.append(Fluxo_Circulacao)
     valores_R.append(R)
 
 plt.figure(figsize=(10, 10))
-plt.plot(valores_R, resultados_fluxo, linestyle='-', color='b')
+plt.plot(valores_R, resultados_F_C, linestyle='-', color='b')
 plt.show()
