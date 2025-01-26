@@ -39,14 +39,16 @@ def V(X, v_mc_x, v_mc_y, P_n, P_c, R_max, B_h, L):                          # Fu
     r = np.maximum(r, 1e-6)
 
     v_mc = np.sqrt(v_mc_x**2 + v_mc_y**2)
-    V_mov_x = v_mc_x*np.exp(-r/500000)
-    V_mov_y = v_mc_y*np.exp(-r/500000)
+    
     D_p = P_n - P_c
 
     if R_max == -1:
         R_max = (56.92 -0.1541*v_mc + 0.7372*(L-25))
     R_max = R_max*1000
 
+    V_mov_x = v_mc_x * np.e**(-(np.pi/4*(np.abs(r-R_max)/R_max)))
+    V_mov_y = v_mc_y * np.e**(-(np.pi/4*(np.abs(r-R_max)/R_max)))
+    
     if B_h == -1:
         B_h = 1.5 + ((98000 - P_c) / 12000)
         
