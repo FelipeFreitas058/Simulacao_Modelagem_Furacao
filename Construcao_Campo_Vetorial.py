@@ -33,14 +33,14 @@ Theta = np.arctan2(Y, X)                                            # Cálculo d
 
 v_mc = np.sqrt(v_mc_x**2 + v_mc_y**2)                               # Cálculo do módulo do vetor de velocidade de deslocamento do centro do furacão
 
-V_mov_x = v_mc_x*np.exp(-r/500000)                                  # Cálculo da coordenada x da velocidade de deslocamento do furacão
-V_mov_y = v_mc_y*np.exp(-r/500000)                                  # Cálculo da coordenada y da velocidade de deslocamento do furacão
-
 D_p = P_n - P_c                                                     # Cálculo da diferença de pressão entre o centro do furacão e o exterior
 
 if R_max == -1:
     R_max = (56.92 -0.1541*v_mc + 0.7372*(L-25))                    # Cálculo do raio do vórtice, caso 'R_max' seja igual à -1
 R_max = R_max*1000                                                  # Conversão de km para m
+
+V_mov_x = v_mc_x * np.e**(-(np.pi/4*(np.abs(r-R_max)/R_max)))       # Cálculo da coordenada x da velocidade de deslocamento do furacão
+V_mov_y = v_mc_y * np.e**(-(np.pi/4*(np.abs(r-R_max)/R_max)))       # Cálculo da coordenada y da velocidade de deslocamento do furacão
 
 if B_h == -1:
     B_h = 1.5 + ((98000 - P_c) / 12000)                             # Cálculo do parâmetro B de Holland, caso 'B_h' seja igual à -1
