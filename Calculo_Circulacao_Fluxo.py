@@ -23,8 +23,6 @@ L = 24.8                        # Latitude do centro do furacão
 R_max = -1                      # raio do vortice (km)          {-1 para calcular o valor através de um modelo}
 B_h = -1                        # parâmetro de Holland          {-1 para calcular o valor através de um modelo}
 
-
-
 Saida = "Circulação"            # Característica a ser calculada (opções: "Fluxo" ou "Circulação")
 
 #################################################################################################################################################################################################################################################################
