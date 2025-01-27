@@ -43,7 +43,7 @@ V_mov_x = v_mc_x * np.e**(-(np.pi/4*(np.abs(r-R_max)/R_max)))       # Cálculo d
 V_mov_y = v_mc_y * np.e**(-(np.pi/4*(np.abs(r-R_max)/R_max)))       # Cálculo da coordenada y da velocidade de deslocamento do furacão
 
 if B_h == -1:
-    B_h = 1.5 + ((98000 - P_c) / 12000)                             # Cálculo do parâmetro B de Holland, caso 'B_h' seja igual à -1
+    B_h = (V_max)**2 *pho*np.e/(D_p)                                # Cálculo do parâmetro B de Holland, caso 'B_h' seja igual à -1
     
 A_h = R_max**(B_h)
 f_c = 2*(7.2921*10**(-5)*np.sin(L*np.pi/180))                       # Cálculo da força de Coriolis para a latitude arbitrada
