@@ -20,6 +20,7 @@ P_c = 840                       # Pressão no centro
 
 L = 24.8                        # Latitude do centro do furacão
 
+V_max = 60                      # Velocidade máxima do furacão
 R_max = -1                      # raio do vortice (km)          {-1 para calcular o valor através de um modelo}
 B_h = -1                        # parâmetro de Holland          {-1 para calcular o valor através de um modelo}
 
@@ -46,13 +47,14 @@ def V(X, v_mc_x, v_mc_y, P_n, P_c, R_max, B_h, L):                          # Fu
 
     V_mov_x = v_mc_x * np.e**(-(np.pi/4*(np.abs(r-R_max)/R_max)))
     V_mov_y = v_mc_y * np.e**(-(np.pi/4*(np.abs(r-R_max)/R_max)))
+
+    pho = 1.15
     
     if B_h == -1:
-        B_h = 1.5 + ((98000 - P_c) / 12000)
+        B_h = (V_max)**2 *pho*np.e/(D_p)
         
     A_h = R_max**(B_h)
     f_c = 2*(7.2921*10**(-5)*np.sin(L*np.pi/180))
-    pho = 1.15
 
     exp_term = np.exp(-A_h / r**B_h)
     numerador = A_h * B_h * D_p * exp_term
